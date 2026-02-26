@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+
+const allProjects = await getCollection("projects");
+const projects = allProjects.sort((a, b) => {
+    const aDate = a.data.startDate?.valueOf() ?? 0;
+    const bDate = b.data.startDate?.valueOf() ?? 0;
+    return bDate - aDate;
+  });
+---
+<BaseLayout title="Projects | Marisana Masha" description="Research and implementation projects.">
+  <header class="mb-8">
+    <h1 class="text-3xl font-semibold tracking-tight">Projects</h1>
+    <p class="mt-2 text-slate-700">Filter by project status and featured works.</p>
+  </header>
+
+  <form id="project-filters" class="mb-8 grid gap-4 rounded-xl border border-slate-200 bg-white p-4 md:grid-cols-3">
+    <label class="flex flex-col gap-2 text-sm">
+      Featured
+      <select class="rounded border border-slate-300 px-2 py-1" name="featured">
+        <option value="">All</option>
+        <option value="true">Featured only</option>
+      </select>
+    </label>
+    <label class="flex flex-col gap-2 text-sm">
+      Status
+      <select class="rounded border border-slate-300 px-2 py-1" name="status">
+        <option value="">All</option>
+        <option value="planned">Planned</option>
+        <option value="active">Active</option>
+        <option value="completed">Completed</option>
+      </select>
+    </label>
+    <div class="flex items-end gap-2">
+      <button class="rounded bg-ink px-4 py-2 text-sm font-medium text-white" type="submit">Apply</button>
+      <button class="rounded border border-slate-300 px-4 py-2 text-sm no-underline" type="reset">Reset</button>
+    </div>
+  </form>
+
+  <div id="project-grid" class="grid gap-4 md:grid-cols-2">
+    {projects.map((project) => (
+      <div data-project-card data-featured={project.data.featured ? "true" : "false"} data-status={project.data.status}>
+        <Card href={`/projects/${project.slug}`} title={project.data.title} description={project.data.description} meta={`${project.data.status} · ${project.data.tech.join(", ")}`} />
+      </div>
+    ))}
+  </div>
+
+  <script>
+    const form = document.getElementById("project-filters");
+    const cards = Array.from(document.querySelectorAll("[data-project-card]"));
+    if (form instanceof HTMLFormElement) {
+      const featured = form.elements.namedItem("featured");
+      const status = form.elements.namedItem("status");
+
+      const applyFilters = () => {
+        const featuredValue = featured instanceof HTMLSelectElement ? featured.value : "";
+        const statusValue = status instanceof HTMLSelectElement ? status.value : "";
+
+        for (const card of cards) {
+          if (!(card instanceof HTMLElement)) continue;
+          const featuredOk = featuredValue ? card.dataset.featured === featuredValue : true;
+          const statusOk = statusValue ? card.dataset.status === statusValue : true;
+          card.style.display = featuredOk && statusOk ? "" : "none";
+        }
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        applyFilters();
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(applyFilters, 0);
+      });
+    }
+  </script>
+</BaseLayout>

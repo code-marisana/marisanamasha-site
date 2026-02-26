@@ -1,0 +1,115 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CopyButton from "../../components/CopyButton.astro";
+import PublicationJsonLd from "../../components/PublicationJsonLd.astro";
+import { allCitations } from "../../utils/citation";
+
+export async function getStaticPaths() {
+  const publications = await getCollection("publications");
+  return publications.map((publication) => ({
+    params: { id: publication.id },
+    props: { publication }
+  }));
+}
+
+const { publication } = Astro.props;
+const citations = allCitations(publication.data);
+const hasAffiliationLinks = publication.data.authors.some((author) => author.affiliations.length > 0);
+const typeLabels: Record<string, string> = {
+  "journal-article": "Article",
+  "conference-paper": "Conference Paper",
+  "conference-poster": "Conference Poster",
+  "book-chapter": "Book Chapter",
+  "law-review-article": "Law Review Article",
+  "case-comment": "Case Comment",
+  "policy-brief": "Policy Brief"
+};
+---
+<BaseLayout title={`${publication.data.title} | Publication`} description={publication.data.abstract} type="article">
+  <PublicationJsonLd publication={publication.data} />
+
+  <article class="rounded-2xl bg-white p-8 shadow-card">
+    <p class="text-sm uppercase tracking-wide text-steel">{typeLabels[publication.data.type] ?? publication.data.type} · {publication.data.fields.join(", ")}</p>
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight">{publication.data.title}</h1>
+    <p class="mt-3 text-slate-700">
+      {publication.data.authors.map((author, index) => (
+        <>
+          <span>
+            {author.given} {author.family}
+            {author.affiliations.length > 0 && <sup class="ml-0.5">{author.affiliations.join(",")}</sup>}
+          </span>
+          {index < publication.data.authors.length - 1 ? ", " : ""}
+        </>
+      ))}
+    </p>
+    <p class="mt-1 text-sm text-slate-600">
+      {publication.data.journal} ({publication.data.year})
+      {publication.data.volume ? `, Vol. ${publication.data.volume}` : ""}
+      {publication.data.issue ? `(${publication.data.issue})` : ""}
+      {publication.data.pages ? `, ${publication.data.pages}` : ""}
+    </p>
+    {publication.data.eventName && <p class="mt-1 text-sm text-slate-600">Event: {publication.data.eventName}</p>}
+    {publication.data.location && <p class="mt-1 text-sm text-slate-600">Location: {publication.data.location}</p>}
+    {publication.data.doi && (
+      <p class="mt-1 text-sm">
+        DOI: <a href={`https://doi.org/${publication.data.doi}`} target="_blank" rel="noreferrer">{publication.data.doi}</a>
+      </p>
+    )}
+    {publication.data.url && (
+      <p class="mt-1 text-sm">
+        Resource: <a href={publication.data.url} target="_blank" rel="noreferrer">View publication file</a>
+      </p>
+    )}
+
+    <section class="prose-academic mt-6">
+      <h2>Abstract</h2>
+      <p>{publication.data.abstract}</p>
+      <p><strong>Keywords:</strong> {publication.data.keywords.join(", ")}</p>
+      {publication.data.affiliations.length > 0 && (
+        <>
+          <h2>Affiliations</h2>
+          <ul>
+            {publication.data.affiliations.map((affiliation, index) => (
+              <li id={`affiliation-${index + 1}`}>
+                <strong>{index + 1}.</strong> {affiliation}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {hasAffiliationLinks && (
+        <p class="text-sm text-slate-600">
+          Author superscripts indicate affiliation numbers listed above.
+        </p>
+      )}
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold tracking-tight">Citation Formats</h2>
+      <div class="mt-4 space-y-4">
+        {Object.entries(citations).map(([style, text]) => (
+          <div class="rounded-lg border border-slate-200 p-4">
+            <div class="mb-2 flex items-center justify-between gap-4">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-steel">{style}</h3>
+              <CopyButton text={text} label="Copy citation" />
+            </div>
+            <p class="text-sm text-slate-700">{text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold tracking-tight">Export Citation Files</h2>
+      <div class="mt-3 flex flex-wrap gap-3">
+        <a class="rounded border border-slate-300 px-4 py-2 text-sm no-underline hover:bg-slate-50" href={`/citations/${publication.id}.bib`} download>
+          Download BibTeX
+        </a>
+        <a class="rounded border border-slate-300 px-4 py-2 text-sm no-underline hover:bg-slate-50" href={`/citations/${publication.id}.ris`} download>
+          Download RIS
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

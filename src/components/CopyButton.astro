@@ -1,0 +1,34 @@
+---
+interface Props {
+  text: string;
+  label?: string;
+}
+
+const { text, label = "Copy" } = Astro.props;
+---
+<button
+  class="rounded border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+  type="button"
+  data-copy={text}
+>
+  {label}
+</button>
+
+<script>
+  // Small client script for clipboard interaction.
+  document.addEventListener("click", async (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const btn = target.closest("button[data-copy]");
+    if (!(btn instanceof HTMLButtonElement)) return;
+
+    const payload = btn.dataset.copy ?? "";
+    await navigator.clipboard.writeText(payload);
+    const original = btn.textContent ?? "Copy";
+    btn.textContent = "Copied";
+    window.setTimeout(() => {
+      btn.textContent = original;
+    }, 1200);
+  });
+</script>

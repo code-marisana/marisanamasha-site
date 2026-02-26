@@ -1,0 +1,120 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const entries = await getCollection("publications");
+const years = [...new Set(entries.map((entry) => entry.data.year))].sort((a, b) => b - a);
+const types = [...new Set(entries.map((entry) => entry.data.type))].sort();
+const fields = [...new Set(entries.flatMap((entry) => entry.data.fields))].sort();
+const typeLabels: Record<string, string> = {
+  "journal-article": "Article",
+  "conference-paper": "Conference Paper",
+  "conference-poster": "Conference Poster",
+  "book-chapter": "Book Chapter",
+  "law-review-article": "Law Review Article",
+  "case-comment": "Case Comment",
+  "policy-brief": "Policy Brief"
+};
+
+const publications = entries.sort((a, b) => b.data.year - a.data.year);
+---
+<BaseLayout title="Publications | Marisana Masha" description="Scientific and legal publications.">
+  <header class="mb-8">
+    <h1 class="text-3xl font-semibold tracking-tight">Publications</h1>
+    <p class="mt-2 text-slate-700">Browse by year, publication type, and research field.</p>
+  </header>
+
+  <form id="publication-filters" class="mb-8 grid gap-4 rounded-xl border border-slate-200 bg-white p-4 md:grid-cols-4">
+    <label class="flex flex-col gap-2 text-sm">
+      Year
+      <select class="rounded border border-slate-300 px-2 py-1" name="year">
+        <option value="">All</option>
+        {years.map((year) => <option value={year}>{year}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-2 text-sm">
+      Type
+      <select class="rounded border border-slate-300 px-2 py-1" name="type">
+        <option value="">All</option>
+        {types.map((type) => <option value={type}>{typeLabels[type] ?? type}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-2 text-sm">
+      Fields
+      <select class="rounded border border-slate-300 px-2 py-1" name="fields">
+        <option value="">All</option>
+        {fields.map((field) => <option value={field}>{field}</option>)}
+      </select>
+    </label>
+    <div class="flex items-end gap-2">
+      <button class="rounded bg-ink px-4 py-2 text-sm font-medium text-white" type="submit">Apply</button>
+      <button class="rounded border border-slate-300 px-4 py-2 text-sm no-underline" type="reset">Reset</button>
+    </div>
+  </form>
+
+  <div id="publication-grid" class="grid gap-4 md:grid-cols-2">
+    {
+      publications.map((pub) => (
+        <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-card" data-publication-card data-year={`${pub.data.year}`} data-type={pub.data.type} data-fields={pub.data.fields.join(",")}>
+          <p class="text-xs uppercase tracking-wide text-steel">{typeLabels[pub.data.type] ?? pub.data.type} · {pub.data.year} · {pub.data.fields.join(", ")}</p>
+          <h2 class="mt-1 text-lg font-semibold tracking-tight">
+            <a class="no-underline hover:underline" href={`/publications/${pub.id}`}>{pub.data.title}</a>
+          </h2>
+          <p class="mt-2 text-sm text-slate-700">{pub.data.eventName ?? pub.data.journal}</p>
+          <div class="mt-3 text-sm">
+            {pub.data.doi ? (
+              <p>
+                DOI: <a href={`https://doi.org/${pub.data.doi}`} target="_blank" rel="noreferrer">{pub.data.doi}</a>
+              </p>
+            ) : pub.data.url ? (
+              <p>
+                File:{" "}
+                <a href={pub.data.url} target="_blank" rel="noreferrer">
+                  Download publication
+                </a>
+              </p>
+            ) : (
+              <p class="text-slate-500">No DOI/file link available.</p>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <script>
+    const form = document.getElementById("publication-filters");
+    const cards = Array.from(document.querySelectorAll("[data-publication-card]"));
+
+    if (form instanceof HTMLFormElement) {
+      const year = form.elements.namedItem("year");
+      const type = form.elements.namedItem("type");
+      const fields = form.elements.namedItem("fields");
+
+      const applyFilters = () => {
+        const yearValue = year instanceof HTMLSelectElement ? year.value : "";
+        const typeValue = type instanceof HTMLSelectElement ? type.value : "";
+        const selectedFields =
+          fields instanceof HTMLSelectElement && fields.value ? fields.value.split(",").map((field) => field.trim()) : [];
+
+        for (const card of cards) {
+          if (!(card instanceof HTMLElement)) continue;
+          const yearOk = yearValue ? card.dataset.year === yearValue : true;
+          const typeOk = typeValue ? card.dataset.type === typeValue : true;
+          const cardFields = (card.dataset.fields ?? "").split(",").filter(Boolean);
+          const fieldsOk = selectedFields.length === 0 ? true : selectedFields.some((field) => cardFields.includes(field));
+          card.style.display = yearOk && typeOk && fieldsOk ? "" : "none";
+        }
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        applyFilters();
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(applyFilters, 0);
+      });
+    }
+  </script>
+</BaseLayout>

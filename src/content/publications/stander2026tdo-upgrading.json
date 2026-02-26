@@ -1,0 +1,23 @@
+{
+  "id": "stander2026tdo-upgrading",
+  "title": "Upgrading of pyrolysis tire-derived oil through fractional condensation and subsequent oxidative desulphurisation",
+  "authors": [
+    {"given": "Adam J.", "family": "Stander"},
+    {"given": "Marisana A.", "family": "Masha"},
+    {"given": "George M.", "family": "Teke"},
+    {"given": "Somayeh", "family": "Farzad"},
+    {"given": "Johannes H.", "family": "Knoetze"},
+    {"given": "Cara E.", "family": "Schwarz"},
+    {"given": "Johann F.", "family": "Görgens"}
+  ],
+  "journal": "Journal of the Energy Institute",
+  "year": 2026,
+  "volume": "124",
+  "pages": "102394",
+  "doi": "10.1016/j.joei.2025.102394",
+  "abstract": "Pyrolysis of waste tire rubber produces three crude products: tire-derived oil (TDO), pyrolysis char and pyrolysis gas. While char and gas have diverse functional applications, crude TDO typically does not meet specifications for premium commercial fuel, due to its low quality and chemical heterogeneity. Hence, this study upgraded TDO to higher-quality fractions through a combination of thermal-desulphurization, fractional condensation of hot pyrolysis volatiles into three TDO fractions, and oxidative desulphurization (ODS). Key findings showed significant fractionation was achieved in the boiling point range of a typical crude TDO (54.41–246.23 degrees C), thereby separating from each other the light-cut (48.99–77.32 degrees C), medium-cut (74.98–225.25 degrees C), and heavy-cut (133.12–288.75 degrees C) fractions. The heaviest TDO fraction met all marine bunker oil specifications, except for sulphur content, while the medium TDO fraction met commercial diesel specifications except for flash point and sulphur content. The lightest TDO fraction would require several upgrading steps to meet the specifications of naphtha, kerosene and/or gasoline. Further decreases of 55, 62 and 48 % in the sulphur contents of the heavy, medium and light TDO fractions, respectively, could be achieved by a typical ODS combined with solvent extraction. However, further development of these processes for sulphur removal is required to meet specific commercial fuel standards.",
+  "keywords": ["waste tire pyrolysis", "TDO fractionation", "fractional condensation", "desulphurization", "fuel characteristics"],
+  "type": "journal-article",
+  "fields": ["engineering", "science"],
+  "url": "https://doi.org/10.1016/j.joei.2025.102394"
+}

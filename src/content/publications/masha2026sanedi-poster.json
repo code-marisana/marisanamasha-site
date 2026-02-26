@@ -1,0 +1,28 @@
+{
+  "id": "masha2026sanedi-poster",
+  "title": "CFD-Based Design of an Intensified Biomass Pyrolysis Reactor for Hydrogen Production",
+  "authors": [
+    {"given": "Marisana A.", "family": "Masha", "affiliations": [1]},
+    {"given": "Buntu", "family": "Godongwana", "affiliations": [1]},
+    {"given": "Azwihangwisi I.", "family": "Mabuda", "affiliations": [3]},
+    {"given": "Philani P.", "family": "Mpungose", "affiliations": [2]},
+    {"given": "Myalelo", "family": "Nomnqa", "affiliations": [4]},
+    {"given": "Sampson", "family": "Mamphweli", "affiliations": [5]}
+  ],
+  "journal": "SANEDI Annual Energy Conference 2026",
+  "year": 2026,
+  "abstract": "Hydrogen remains critical for clean energy and industrial applications, yet over 90% of global production still derives from fossil fuels, exacerbating greenhouse gas emissions and energy insecurity. In Africa, where lignocellulosic biomass is abundant and renewable, thermochemical conversion offers a pathway to carbon-neutral hydrogen. However, conventional pyrolysis suffers from low hydrogen yields due to hydrogen retention in biochar and bio-oil. This research addresses this gap by designing a novel, intensified pyrolysis reactor optimised for maximum hydrogen production. Using Computational Fluid Dynamics (CFD) in ANSYS Fluent, the study develops and validates a multiphase, reactive flow model that integrates detailed reaction kinetics, heat and mass transfer, and process intensification strategies (e.g., multi-stage configurations, advanced heating methods, and catalytic upgrading). Key operating parameters—temperature (400–1000 °C), pressure, carrier gas flow rate, biomass composition, and residence time—will be systematically optimised to enhance H2 selectivity while minimising energy input and costs. The project fills a critical research void: few CFD studies of intensified pyrolysis reactors report detailed hydrogen yields, particularly in African contexts. By combining digital simulation tools with biomass valorisation, this work catalyses a just digital energy transition for Africa and beyond. It promotes equitable access to clean hydrogen, leverages local biomass resources to reduce fossil fuel dependence, creates opportunities for rural economies, and advances sustainable chemical engineering solutions aligned with continental energy sovereignty and global decarbonisation goals.",
+  "keywords": ["hydrogen", "biomass", "intensified pyrolysis", "CFD", "ANSYS Fluent", "just energy transition", "Africa"],
+  "type": "conference-poster",
+  "fields": ["engineering", "science"],
+  "url": "/posters/sanedi-conference-2026-poster.pdf",
+  "eventName": "SANEDI Annual Energy Conference 2026",
+  "location": "Kempton Park, Johannesburg, South Africa",
+  "affiliations": [
+    "Department of Chemical Engineering, Cape Peninsula University of Technology, Cape Town, South Africa.",
+    "Department of Chemistry, Cape Peninsula University of Technology, Cape Town, South Africa.",
+    "Department of Electrical Engineering, Cape Peninsula University of Technology, Cape Town, South Africa.",
+    "Department of Chemical Engineering, University of Johannesburg, Johannesburg, South Africa.",
+    "South African National Energy Development Institute, Johannesburg, South Africa."
+  ]
+}

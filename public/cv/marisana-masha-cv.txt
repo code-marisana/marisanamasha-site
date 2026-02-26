@@ -1,0 +1,62 @@
+MARISANA A. MASHA
+Doctor of Engineering Candidate
+Cape Town, South Africa
+Last Updated: February 26, 2026
+
+Links
+- LinkedIn: https://linkedin.com/in/marisanamasha
+- ORCID: https://orcid.org/0000-0001-5121-2861
+- GitHub: https://github.com/code-marisana
+- Website: https://marisanamasha.com
+
+PROFILE
+I am a chemical engineering researcher focused on hydrogen production, biomass valorization,
+and thermochemical process optimization using computational modeling and pilot-scale validation.
+
+RESEARCH INTERESTS
+- Hydrogen Production
+- Biofuels
+- Computational Modeling and CFD
+- Thermochemical Processes
+- Energy Systems
+
+EDUCATION
+Doctor of Engineering in Chemical Engineering, Cape Peninsula University of Technology (2025 - Present)
+Thesis: Computational Fluid Dynamics Modeling of an Intensified Biomass Pyrolysis Reactor for Hydrogen Production
+
+Master of Engineering in Chemical Engineering, Stellenbosch University (2021 - 2024)
+Thesis: Quality improvement of liquid fuels derived from waste tire pyrolysis
+
+Bachelor of Laws, University of the Witwatersrand (2018 - 2020)
+Bachelor of Science in Engineering (Chemical), University of the Witwatersrand (2013 - 2016)
+
+PROFESSIONAL EXPERIENCE
+Research Engineer, Stellenbosch University (2024 - Present)
+- Provide research and technical support for industry-linked pyrolysis projects using a pilot-scale plant.
+- Prepare feedstock and sampling plans using coning and quartering protocols.
+- Develop project timelines and manage full pyrolysis plant operations.
+- Troubleshoot technical issues, document findings, and submit weekly stakeholder reports.
+
+TECHNICAL SKILLS
+Engineering: ANSYS, Aspen Plus, AutoCAD, Fusion 360
+Programming: Matlab, Python, Ruby, Bash, C, SQL, JavaScript, CSS, HTML
+Analytics and Reporting: Power BI, sample collection, data cleaning and analysis, design of experiments, reporting
+Productivity and Graphics: Microsoft Office, Google Workspace, macOS tools, LibreOffice, Adobe Illustrator, Inkscape
+
+LANGUAGES
+- English (read, write, speak)
+- Sepedi (read, write, native)
+- Zulu (read, speak)
+- Sotho (read, speak)
+- Tswana (read, speak)
+
+PUBLICATIONS
+- Upgrading of pyrolysis tire-derived oil through fractional condensation and subsequent oxidative desulphurisation (2026)
+- CFD-Based Design of an Intensified Biomass Pyrolysis Reactor for Hydrogen Production (2026)
+
+CONFERENCE CONTRIBUTIONS
+- SANEDI Annual Energy Conference 2026 - Conference Poster
+
+GRANTS AND SCHOLARSHIPS
+- NRF Full Scholarship for Masters (2022 and 2023)
+- SANEDI Full Scholarship for DEng (2025 - Present)

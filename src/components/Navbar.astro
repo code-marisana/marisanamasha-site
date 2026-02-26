@@ -1,0 +1,35 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/cv", label: "CV" },
+  { href: "/projects", label: "Projects" },
+  { href: "/publications", label: "Publications" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" }
+];
+const pathname = Astro.url.pathname;
+---
+<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <a class="inline-flex items-center no-underline" href="/" aria-label="Marisana Masha Home">
+      <img src="/logo.svg" alt="Marisana Masha logo" class="h-9 w-auto sm:h-10" />
+    </a>
+    <ul class="flex flex-wrap gap-4 text-sm">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              class:list={[
+                "rounded px-2 py-1 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
+                pathname === link.href ? "bg-mist font-medium" : "hover:bg-slate-100"
+              ]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

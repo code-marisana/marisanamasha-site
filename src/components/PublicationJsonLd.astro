@@ -1,0 +1,35 @@
+---
+import type { Publication } from "../utils/citation";
+
+interface Props {
+  publication: Publication;
+}
+
+const { publication } = Astro.props;
+const schemaType = publication.type === "law-review-article" ? "ScholarlyArticle" : "ScholarlyArticle";
+const sameAs =
+  publication.url && publication.url.startsWith("/")
+    ? new URL(publication.url, Astro.site?.toString() ?? "https://marisanamasha.com").toString()
+    : publication.url;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": schemaType,
+  headline: publication.title,
+  datePublished: `${publication.year}`,
+  author: publication.authors.map((author) => ({
+    "@type": "Person",
+    givenName: author.given,
+    familyName: author.family
+  })),
+  isPartOf: {
+    "@type": "Periodical",
+    name: publication.journal
+  },
+  description: publication.abstract,
+  keywords: publication.keywords.join(", "),
+  sameAs: sameAs ?? undefined,
+  identifier: publication.doi ? `https://doi.org/${publication.doi}` : publication.id
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,0 +1,155 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const publications = (await getCollection("publications")).sort((a, b) => b.data.year - a.data.year);
+const conferenceItems = publications.filter((item) => item.data.type === "conference-paper" || item.data.type === "conference-poster");
+const lastUpdated = "February 26, 2026";
+---
+<BaseLayout
+  title="CV | Marisana Masha"
+  description="Curriculum Vitae for Marisana A. Masha: education, research, engineering experience, publications, and grants."
+>
+  <article class="space-y-6">
+    <header class="rounded-2xl border border-slate-200 bg-white p-8 shadow-card">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Marisana A. Masha</h1>
+          <p class="mt-1 text-base font-medium text-steel">Doctor of Engineering Candidate</p>
+          <p class="mt-1 text-sm text-slate-600">Cape Town, South Africa</p>
+        </div>
+        <div class="rounded-lg border border-slate-200 bg-mist px-3 py-2 text-sm">
+          <strong>Last updated:</strong> {lastUpdated}
+        </div>
+      </div>
+
+      <p class="mt-5 max-w-3xl text-sm leading-relaxed text-slate-700">
+        I am a chemical engineering researcher focused on hydrogen production, biomass valorization, and thermochemical
+        process optimization using computational modeling and pilot-scale validation.
+      </p>
+
+      <div class="mt-5 flex flex-wrap items-center gap-3 text-sm">
+        <a class="rounded bg-ink px-4 py-2 font-medium text-white no-underline hover:bg-[#15365f]" href="/cv/marisana-masha-cv.pdf" download>
+          Download PDF CV
+        </a>
+        <a class="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-300 text-slate-700 no-underline hover:bg-slate-100" href="https://linkedin.com/in/marisanamasha" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+            <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.9-2.1 4-2.1 4.2 0 5 2.8 5 6.4V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21H9z" />
+          </svg>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a class="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-300 text-slate-700 no-underline hover:bg-slate-100" href="https://orcid.org/0000-0001-5121-2861" target="_blank" rel="noreferrer" aria-label="ORCID profile">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-4 4.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM7 10h2v7H7v-7zm4 0h3.3c2.3 0 4.2 1.6 4.2 3.5S16.6 17 14.3 17H11v-7zm2 1.8v3.4h1.2c1.2 0 2.1-.7 2.1-1.7s-.9-1.7-2.1-1.7H13z" />
+          </svg>
+          <span class="sr-only">ORCID</span>
+        </a>
+        <a class="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-300 text-slate-700 no-underline hover:bg-slate-100" href="https://github.com/code-marisana" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+            <path d="M12 .5A12 12 0 0 0 8.2 24c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.6-1.3-1.3-1.6-1.3-1.6-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.8 2.8 3.5 2 .1-.8.4-1.4.7-1.7-2.7-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2.1v3.1c0 .4.2.7.8.6A12 12 0 0 0 12 .5z" />
+          </svg>
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a class="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-300 text-slate-700 no-underline hover:bg-slate-100" href="https://marisanamasha.com" target="_blank" rel="noreferrer" aria-label="Personal website">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 9h-3.1a16 16 0 0 0-1.1-5 8 8 0 0 1 4.2 5zM12 4.1c.9 1.2 1.8 3.5 2.1 6H9.9c.3-2.5 1.2-4.8 2.1-6zM6.1 13h3a18 18 0 0 0 0 3h-3a8 8 0 0 1 0-3zm.8-2a8 8 0 0 1 4.2-5 16 16 0 0 0-1.1 5H6.9zm5.1 8c-.9-1.2-1.8-3.5-2.1-6h4.2c-.3 2.5-1.2 4.8-2.1 6zm2.7-3a18 18 0 0 0 0-3h3a8 8 0 0 1-3 3zm0-5a16 16 0 0 0-1.1-5 8 8 0 0 1 4.2 5h-3.1z" />
+          </svg>
+          <span class="sr-only">Website</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+        <h2 class="text-xl font-semibold tracking-tight">Research Interests</h2>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700">
+          <li>Hydrogen Production</li>
+          <li>Biofuels</li>
+          <li>Computational Modeling and CFD</li>
+          <li>Thermochemical Processes</li>
+          <li>Energy Systems</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+        <h2 class="text-xl font-semibold tracking-tight">Languages</h2>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
+          <li><strong>English:</strong> Read, write, speak</li>
+          <li><strong>Sepedi:</strong> Read, write, native</li>
+          <li><strong>Zulu:</strong> Read, speak</li>
+          <li><strong>Sotho:</strong> Read, speak</li>
+          <li><strong>Tswana:</strong> Read, speak</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <h2 class="text-xl font-semibold tracking-tight">Education</h2>
+      <div class="mt-4 space-y-4 text-sm text-slate-700">
+        <div>
+          <p><strong>Doctor of Engineering in Chemical Engineering</strong>, Cape Peninsula University of Technology (2025 - Present)</p>
+          <p>Thesis: Computational Fluid Dynamics Modeling of an Intensified Biomass Pyrolysis Reactor for Hydrogen Production</p>
+        </div>
+        <div>
+          <p><strong>Master of Engineering in Chemical Engineering</strong>, Stellenbosch University (2021 - 2024)</p>
+          <p>Thesis: Quality improvement of liquid fuels derived from waste tire pyrolysis</p>
+        </div>
+        <p><strong>Bachelor of Laws</strong>, University of the Witwatersrand (2018 - 2020)</p>
+        <p><strong>Bachelor of Science in Engineering (Chemical)</strong>, University of the Witwatersrand (2013 - 2016)</p>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <h2 class="text-xl font-semibold tracking-tight">Professional Experience</h2>
+      <div class="mt-4 text-sm text-slate-700">
+        <p><strong>Research Engineer</strong>, Stellenbosch University (2024 - Present)</p>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <li>Provide research and technical support for industry-linked pyrolysis projects using a pilot-scale plant.</li>
+          <li>Prepare feedstock and sampling plans using coning and quartering protocols.</li>
+          <li>Develop project timelines and manage full pyrolysis plant operations.</li>
+          <li>Troubleshoot technical issues, document findings, and submit weekly stakeholder reports.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <h2 class="text-xl font-semibold tracking-tight">Technical Skills</h2>
+      <ul class="mt-4 space-y-2 text-sm text-slate-700">
+        <li><strong>Engineering:</strong> ANSYS, Aspen Plus, AutoCAD, Fusion 360</li>
+        <li><strong>Programming:</strong> Matlab, Python, Ruby, Bash, C, SQL, JavaScript, CSS, HTML</li>
+        <li><strong>Analytics and Reporting:</strong> Power BI, sample collection, data cleaning and analysis, design of experiments, reporting</li>
+        <li><strong>Productivity and Graphics:</strong> Microsoft Office, Google Workspace, macOS tools, LibreOffice, Adobe Illustrator, Inkscape</li>
+      </ul>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+        <h2 class="text-xl font-semibold tracking-tight">Publications</h2>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
+          {publications.map((item) => (
+            <li>
+              <a href={`/publications/${item.id}`}>{item.data.title}</a> ({item.data.year})
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+        <h2 class="text-xl font-semibold tracking-tight">Conference Contributions</h2>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
+          {conferenceItems.map((item) => (
+            <li>{item.data.eventName ?? item.data.journal} - {item.data.type === "conference-poster" ? "Conference Poster" : "Conference Paper"}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <h2 class="text-xl font-semibold tracking-tight">Grants and Scholarships</h2>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
+        <li>NRF Full Scholarship for Masters (2022 and 2023)</li>
+        <li>SANEDI Full Scholarship for DEng (2025 - Present)</li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
