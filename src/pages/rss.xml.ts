@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 export async function GET(context) {
   const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-  );
+  ).filter((post) => !["hydrogen-policy-models", "process-intensification-pyrolysis"].includes(post.slug));
 
   return rss({
     title: "Marisana Masha Research Blog",

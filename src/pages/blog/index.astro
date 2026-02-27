@@ -5,24 +5,33 @@ import Card from "../../components/Card.astro";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+).filter((post) => !["hydrogen-policy-models", "process-intensification-pyrolysis"].includes(post.slug));
 ---
-<BaseLayout title="Blog | Marisana Masha" description="Research notes and commentary.">
+<BaseLayout title="Blog | Marisana Masha" description="Exclusive site content and personal writing.">
   <header class="mb-8">
     <h1 class="text-3xl font-semibold tracking-tight">Blog</h1>
-    <p class="mt-2 text-slate-700">Updates on hydrogen systems, process engineering, and energy law.</p>
+    <p class="mt-2 text-slate-700">
+      This page is for content exclusive to this site and not published anywhere else. I write freely on any topics I
+      find interesting.
+    </p>
   </header>
 
-  <div class="grid gap-4 md:grid-cols-2">
-    {
-      posts.map((post) => (
-        <Card
-          href={`/blog/${post.slug}`}
-          title={post.data.title}
-          description={post.data.description}
-          meta={`${post.data.date.toISOString().slice(0, 10)} · ${post.data.tags.join(", ")}`}
-        />
-      ))
-    }
-  </div>
+  {posts.length > 0 ? (
+    <div class="grid gap-4 md:grid-cols-2">
+      {
+        posts.map((post) => (
+          <Card
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            description={post.data.description}
+            meta={`${post.data.date.toISOString().slice(0, 10)} · ${post.data.tags.join(", ")}`}
+          />
+        ))
+      }
+    </div>
+  ) : (
+    <section class="rounded-xl border border-slate-200 bg-white p-6 shadow-card">
+      <p class="text-sm text-slate-700">No posts yet. New exclusive posts will appear here.</p>
+    </section>
+  )}
 </BaseLayout>
