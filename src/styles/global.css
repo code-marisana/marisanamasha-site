@@ -38,3 +38,11 @@ a:focus-visible {
 .prose-academic li {
   @apply text-slate-700;
 }
+
+.prose-academic ul {
+  @apply list-disc pl-6;
+}
+
+.prose-academic ol {
+  @apply list-decimal pl-6;
+}

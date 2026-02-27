@@ -21,6 +21,8 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     startDate: z.coerce.date().optional(),
     endDate: z.coerce.date().optional(),
+    role: z.string().optional(),
+    institution: z.string().optional(),
     links: z
       .array(
         z.object({

@@ -27,15 +27,17 @@ const publications = (await getCollection("publications"))
     </div>
   </section>
 
-  <section class="mt-12">
-    <div class="mb-4 flex items-end justify-between">
-      <h2 class="text-2xl font-semibold tracking-tight">Featured Projects</h2>
-      <a href="/projects">View all</a>
-    </div>
-    <div class="grid gap-4 md:grid-cols-3">
-      {projects.map((project) => <Card href={`/projects/${project.slug}`} title={project.data.title} description={project.data.description} meta={project.data.status} />)}
-    </div>
-  </section>
+  {projects.length > 0 && (
+    <section class="mt-12">
+      <div class="mb-4 flex items-end justify-between">
+        <h2 class="text-2xl font-semibold tracking-tight">Featured Projects</h2>
+        <a href="/projects">View all</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {projects.map((project) => <Card href={`/projects/${project.slug}`} title={project.data.title} description={project.data.description} meta={project.data.status} />)}
+      </div>
+    </section>
+  )}
 
   <section class="mt-12">
     <div class="mb-4 flex items-end justify-between">
