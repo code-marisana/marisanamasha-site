@@ -1,0 +1,20 @@
+{
+  "id": "masha2025cput-research-festival-poster",
+  "title": "Hydrogen Production from Biomass: Thermochemical and Biological Pathways",
+  "authors": [
+    {"given": "M.A.", "family": "Masha"},
+    {"given": "P.P.", "family": "Mpungose"},
+    {"given": "M.", "family": "Nomnqa"},
+    {"given": "A.I.", "family": "Mabuda"},
+    {"given": "B.", "family": "Godongwana"}
+  ],
+  "journal": "CPUT Research Festival",
+  "year": 2025,
+  "abstract": "Hydrogen (H2) is a clean energy carrier with growing importance in industrial applications and the global transition toward low-carbon energy systems. However, approximately 96% of hydrogen production currently relies on fossil-based processes, particularly steam reforming, which contributes significantly to CO2 emissions. This poster examines renewable hydrogen production from biomass through thermochemical and biological pathways as sustainable alternatives. Thermochemical processes, including pyrolysis and gasification, convert dry biomass at elevated temperatures (350–700 degrees C) to produce hydrogen-rich syngas. Gasification generally achieves higher hydrogen yields through key reactions such as steam-carbon and water-gas shift reactions, although challenges include tar formation, CO/CO2 by-products, and high energy requirements. Pyrolysis produces bio-oil and syngas with comparatively lower greenhouse gas emissions but requires downstream upgrading to maximize hydrogen output. In contrast, biological hydrogen production via anaerobic digestion operates under mild conditions (30–60 degrees C), where microorganisms such as Clostridium and Enterobacter species convert wet organic waste into hydrogen, CO2, and nutrient-rich digestate. While biologically driven systems offer lower energy input and suitability for wet feedstocks, they typically yield less hydrogen and require strict control of pH and temperature. Both approaches support waste-to-energy conversion within a circular bio-economy framework. Furthermore, integrated hybrid systems-combining hydrogen fermentation, methane production, steam reforming, and thermochemical processing of residual solids-present opportunities to enhance overall energy recovery and sustainability. Future development should focus on process optimization, catalyst advancement, and system integration to improve hydrogen yields, reduce costs, and minimize environmental impact.",
+  "keywords": ["CFD", "biomass pyrolysis", "hydrogen production", "reactor design", "conference poster"],
+  "type": "conference-poster",
+  "fields": ["engineering", "science"],
+  "eventName": "CPUT Research Festival",
+  "location": "Bellville, Cape Town, South Africa",
+  "file": "/posters/cput-research-festival-poster-2026.pdf"
+}

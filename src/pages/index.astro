@@ -63,13 +63,20 @@ const publications = (await getCollection("publications"))
                 </>
               ) : pub.data.url ? (
                 <>
-                  File:{" "}
+                  URL:{" "}
                   <a href={pub.data.url} target="_blank" rel="noreferrer">
+                    {pub.data.url}
+                  </a>
+                </>
+              ) : pub.data.file ? (
+                <>
+                  File:{" "}
+                  <a href={pub.data.file} target="_blank" rel="noreferrer">
                     Download publication
                   </a>
                 </>
               ) : (
-                <span class="text-slate-500">No DOI/file link available.</span>
+                <span class="text-slate-500">No DOI, URL, or file available.</span>
               )}
             </p>
           </article>

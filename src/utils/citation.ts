@@ -28,6 +28,27 @@ export const formatCitation = (pub: Publication, style: CitationStyle): string =
   const year = pub.year;
   const issue = styleIssue(pub.issue);
   const volume = styleVolume(pub.volume);
+  const isThesis = pub.type === "masters-thesis" || pub.type === "phd-thesis";
+  const thesisLabel = pub.type === "phd-thesis" ? "PhD thesis" : "Master's thesis";
+
+  if (isThesis) {
+    switch (style) {
+      case "apa":
+        return `${authorsInitials} (${year}). ${pub.title} [${thesisLabel}]. ${pub.journal}.${pub.url ? ` ${pub.url}` : ""}`.trim();
+      case "acs":
+        return `${authorsInitials}. ${pub.title}; ${pub.journal}, ${year}; ${thesisLabel}.${pub.url ? ` ${pub.url}.` : ""}`.trim();
+      case "harvard":
+        return `${authorsInitials} ${year}, ${pub.title}, ${thesisLabel}, ${pub.journal}.${pub.url ? ` Available at: ${pub.url}.` : ""}`.trim();
+      case "oscola":
+        return `${authorsFull}, ${pub.title} (${thesisLabel}, ${pub.journal} ${year})${pub.url ? ` <${pub.url}>` : ""}`.trim();
+      case "chicago":
+        return `${authorsFull}, ${pub.title} (${pub.journal}, ${year}), ${thesisLabel}.${pub.url ? ` ${pub.url}.` : ""}`.trim();
+      case "bluebook":
+        return `${authorsFull}, ${pub.title} (${thesisLabel}, ${pub.journal} ${year})${pub.url ? `, ${pub.url}` : ""}.`.replace(/\s+/g, " ");
+      default:
+        return "";
+    }
+  }
 
   switch (style) {
     case "apa":

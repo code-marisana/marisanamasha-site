@@ -44,6 +44,8 @@ const publicationType = z.enum([
   "journal-article",
   "conference-paper",
   "conference-poster",
+  "masters-thesis",
+  "phd-thesis",
   "book-chapter",
   "law-review-article",
   "case-comment",
@@ -73,6 +75,7 @@ const publications = defineCollection({
     type: publicationType,
     fields: z.array(z.enum(["engineering", "science", "legal"])).min(1),
     url: urlOrPath.optional(),
+    file: urlOrPath.optional(),
     eventName: z.string().optional(),
     location: z.string().optional(),
     affiliations: z.array(z.string()).default([])

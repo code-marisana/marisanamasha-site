@@ -10,6 +10,8 @@ const typeLabels: Record<string, string> = {
   "journal-article": "Article",
   "conference-paper": "Conference Paper",
   "conference-poster": "Conference Poster",
+  "masters-thesis": "Master's Thesis",
+  "phd-thesis": "PhD Thesis",
   "book-chapter": "Book Chapter",
   "law-review-article": "Law Review Article",
   "case-comment": "Case Comment",
@@ -68,13 +70,20 @@ const publications = entries.sort((a, b) => b.data.year - a.data.year);
               </p>
             ) : pub.data.url ? (
               <p>
-                File:{" "}
+                URL:{" "}
                 <a href={pub.data.url} target="_blank" rel="noreferrer">
+                  {pub.data.url}
+                </a>
+              </p>
+            ) : pub.data.file ? (
+              <p>
+                File:{" "}
+                <a href={pub.data.file} target="_blank" rel="noreferrer">
                   Download publication
                 </a>
               </p>
             ) : (
-              <p class="text-slate-500">No DOI/file link available.</p>
+              <p class="text-slate-500">No DOI, URL, or file available.</p>
             )}
           </div>
         </article>

@@ -7,10 +7,11 @@ interface Props {
 
 const { publication } = Astro.props;
 const schemaType = publication.type === "law-review-article" ? "ScholarlyArticle" : "ScholarlyArticle";
+const linkTarget = publication.url ?? publication.file;
 const sameAs =
-  publication.url && publication.url.startsWith("/")
-    ? new URL(publication.url, Astro.site?.toString() ?? "https://marisanamasha.com").toString()
-    : publication.url;
+  linkTarget && linkTarget.startsWith("/")
+    ? new URL(linkTarget, Astro.site?.toString() ?? "https://marisanamasha.com").toString()
+    : linkTarget;
 
 const jsonLd = {
   "@context": "https://schema.org",

@@ -20,6 +20,8 @@ const typeLabels: Record<string, string> = {
   "journal-article": "Article",
   "conference-paper": "Conference Paper",
   "conference-poster": "Conference Poster",
+  "masters-thesis": "Master's Thesis",
+  "phd-thesis": "PhD Thesis",
   "book-chapter": "Book Chapter",
   "law-review-article": "Law Review Article",
   "case-comment": "Case Comment",
@@ -56,9 +58,14 @@ const typeLabels: Record<string, string> = {
         DOI: <a href={`https://doi.org/${publication.data.doi}`} target="_blank" rel="noreferrer">{publication.data.doi}</a>
       </p>
     )}
-    {publication.data.url && (
+    {!publication.data.doi && publication.data.url && (
       <p class="mt-1 text-sm">
-        Resource: <a href={publication.data.url} target="_blank" rel="noreferrer">View publication file</a>
+        URL: <a href={publication.data.url} target="_blank" rel="noreferrer">{publication.data.url}</a>
+      </p>
+    )}
+    {!publication.data.doi && !publication.data.url && publication.data.file && (
+      <p class="mt-1 text-sm">
+        File: <a href={publication.data.file} target="_blank" rel="noreferrer">Download publication</a>
       </p>
     )}
 
